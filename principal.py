@@ -3,7 +3,7 @@ import os
 
 # Configuração da página
 st.set_page_config(
-    page_title="Aplicativo",
+    page_title="Dashboard do Mercado de Dados Brasileiro",
     page_icon="🤓",
     layout="centered",
     initial_sidebar_state="expanded"
@@ -41,13 +41,13 @@ paginas = {
     "": [
         st.Page("paginas/home.py", title="Página Inicial", icon="🤓", default=True)
     ],
-    "Gráficos": [
-        st.Page("paginas/univariadas.py", title="Análise Geral das Variáveis", icon="🤓"),
+    "Páginas Exploratórias": [
+        st.Page("paginas/univariadas.py", title="Análise Geral das Variáveis", icon="📊"),
         st.Page("paginas/univariadas2.py", title="Análise Regional", icon="🗺️"),
-        st.Page("paginas/bivariadas.py", title="Análise Bivariada", icon="🤓")
+        st.Page("paginas/bivariadas.py", title="Análise Bivariada", icon="🔄")
     ],
     "Predição de Salário 🤖": [
-        st.Page("paginas/machine_learning.py", title="ML 🤖", icon="🤖")
+        st.Page("paginas/machine_learning.py", title="Descubra seu salário!", icon="🤖")
     ]
 }
 
