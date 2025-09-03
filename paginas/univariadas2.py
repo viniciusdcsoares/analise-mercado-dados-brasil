@@ -63,12 +63,6 @@ if "template_plotly_mapa" in st.session_state and st.session_state.template_plot
 else:
     template_plotly_mapa = "plotly_dark"  # Default para tema escuro
 
-# Debug das variáveis de tema    
-st.sidebar.markdown("### Configurações de tema")
-st.sidebar.write(f"Tema Plotly: {template_plotly}")
-st.sidebar.write(f"Tema Plotly mapa: {template_plotly_mapa}")
-st.sidebar.write(f"Tema Graph: {template_graph}")
-st.sidebar.write(f"Tema Texto: {template_graph_texto}")
 
 if template_graph == "white":
     letras_sns = "black"

@@ -60,11 +60,6 @@ if "template_graph_texto" in st.session_state and st.session_state.template_grap
 else:
     template_graph_texto = "white"  # Default para tema escuro
 
-# Debug das variáveis de tema    
-st.sidebar.markdown("### Configurações de tema")
-st.sidebar.write(f"Tema Plotly: {template_plotly}")
-st.sidebar.write(f"Tema Graph: {template_graph}")
-st.sidebar.write(f"Tema Texto: {template_graph_texto}")
 
 gradientes = {
     'Rosa': 'PuRd',       # Cores vermelhas

@@ -147,21 +147,6 @@ dt_model = DecisionTreeRegressor(max_depth=6, min_samples_split=195, min_samples
 dt_model.fit(X_train, y_train)
 
 # Título da página
-st.title("Predictor de Salários em Dados")
-
-# Importância das features para guiar o usuário
-st.write("### Features mais importantes para a predição salarial")
-feature_importance = pd.DataFrame({
-    'Feature': X.columns,
-    'Importance': dt_model.feature_importances_
-}).sort_values('Importance', ascending=False)
-
-# Mostrar as 15 features mais importantes
-top_features = feature_importance.head(15)
-fig, ax = plt.subplots(figsize=(12, 8))
-sns.barplot(x='Importance', y='Feature', data=top_features, ax=ax)
-ax.set_title('Top 15 Features Mais Importantes')
-st.pyplot(fig)
 
 # Dicionários de opções para entrada do usuário
 st.write("## Complete o formulário abaixo para obter sua previsão salarial")
@@ -171,8 +156,7 @@ with st.form("salary_prediction_form"):
     col1, col2 = st.columns(2)
     
     with col1:
-        idade = st.slider("Idade", 18, 70, 30)
-        
+       
         estado_opcoes = sorted(df_ml['Estado onde mora'].unique())
         estado = st.selectbox("Estado onde mora", estado_opcoes)
         
@@ -184,10 +168,11 @@ with st.form("salary_prediction_form"):
         
         cargo_opcoes = ['Analista de BI', 'Analista de Dados', 'Cientista de Dados', 'Engenheiro de Dados']
         cargo = st.selectbox("Cargo", cargo_opcoes)
-    
-    with col2:
+
         nivel_opcoes = sorted(df_ml['Nivel'].unique())
         nivel = st.selectbox("Nível", nivel_opcoes)
+    
+    with col2:
         
         experiencia_opcoes = sorted(df_ml['Quanto tempo de experiência na área de dados você tem?'].unique())
         experiencia = st.selectbox("Experiência na área de dados", experiencia_opcoes)
@@ -208,8 +193,7 @@ with st.form("salary_prediction_form"):
     
     # Linguagens de programação
     st.write("#### Linguagens de Programação")
-    linguagens_cols = [col for col in X.columns if col.startswith('Linguagens_')]
-    linguagens_names = [col.replace('Linguagens_', '') for col in linguagens_cols]
+    linguagens_names = ['SQL', 'R', 'Python', 'SAS/Stata', 'Matlab', 'Não utilizo nenhuma linguagem']
     
     linguagens_selecionadas = {}
     col1, col2, col3 = st.columns(3)
@@ -272,7 +256,7 @@ with st.form("salary_prediction_form"):
     if submitted:
         # Preparar os dados de entrada
         input_data = {}
-        
+        idade = df_final['Idade'].median()
         # Normalizar a idade
         idade_norm = (idade - df_ml['Idade'].min()) / (df_ml['Idade'].max() - df_ml['Idade'].min())
         input_data['Idade'] = idade_norm
